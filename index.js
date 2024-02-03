@@ -33,6 +33,17 @@ app.post("/user", async (req, res) => {
   res.json(user);
 });
 
+app.get("/decrementCredit", async (req, res) => {
+  const userEmail = req.query.email;
+  const user = await prisma.user.update({
+    where: { email: String(userEmail) },
+    data: { credit: { decrement: 1 } },
+  });
+  res.json(user);
+});
+
+
+
 app.listen(3000, () => {
   console.log("Listening on port 3000");
 });
