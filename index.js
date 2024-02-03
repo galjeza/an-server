@@ -42,7 +42,10 @@ app.get("/decrementCredit", async (req, res) => {
   res.json(user);
 });
 
-
+app.get("/users", async (req, res) => {
+  const users = await prisma.user.findMany();
+  res.json(users);
+});
 
 app.listen(3000, () => {
   console.log("Listening on port 3000");
