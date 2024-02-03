@@ -11,8 +11,8 @@ datasource db {
 }
 
 model User {
-  id        String  @id @default(auto()) @map("_id") @db.ObjectId
-  email     String  @unique
-  credits   Int     @default(0)
-  brokderId String?
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  email    String  @unique
+  credits  Int     @default(0)
+  brokerId String?
 }
