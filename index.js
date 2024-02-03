@@ -37,7 +37,7 @@ app.get("/decrementCredit", async (req, res) => {
   const userEmail = req.query.email;
   const user = await prisma.user.update({
     where: { email: String(userEmail) },
-    data: { credit: { decrement: 1 } },
+    data: { credits: { decrement: 1 } },
   });
   res.json(user);
 });
