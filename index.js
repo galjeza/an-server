@@ -27,8 +27,9 @@ app.get("/user", async (req, res) => {
 
 app.post("/user", async (req, res) => {
   const userEmail = req.body.email;
+  const brokerId = req.body.brokerId;
   const user = await prisma.user.create({
-    data: { email: String(userEmail) },
+    data: { email: String(userEmail), brokerId: String(brokerId) },
   });
   res.json(user);
 });
@@ -36,6 +37,16 @@ app.post("/user", async (req, res) => {
 app.get("/users", async (req, res) => {
   const users = await prisma.user.findMany();
   res.json(users);
+});
+
+app.post("/renewSubscription", async (req, res) => {
+  const userEmail = req.body.email;
+  const numDays = req.body.numDays;
+  const user = await prisma.user.update({
+    where: { email: String(userEmail) },
+    data: { subscription: { increment: numDays } },
+  });
+  res.json(user);
 });
 
 app.listen(3000, () => {
