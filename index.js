@@ -33,15 +33,6 @@ app.post("/user", async (req, res) => {
   res.json(user);
 });
 
-app.get("/decrementCredit", async (req, res) => {
-  const userEmail = req.query.email;
-  const user = await prisma.user.update({
-    where: { email: String(userEmail) },
-    data: { credits: { decrement: 1 } },
-  });
-  res.json(user);
-});
-
 app.get("/users", async (req, res) => {
   const users = await prisma.user.findMany();
   res.json(users);
