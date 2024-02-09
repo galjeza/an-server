@@ -11,8 +11,8 @@ datasource db {
 }
 
 model User {
-  id                 String   @id @default(auto()) @map("_id") @db.ObjectId
-  email              String   @unique
-  subscriptionPaidTo DateTime @default(now())
+  id                 String    @id @default(auto()) @map("_id") @db.ObjectId
+  email              String    @unique
+  subscriptionPaidTo DateTime? @default(now())
   brokerId           String?
 }
