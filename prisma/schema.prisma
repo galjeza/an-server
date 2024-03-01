@@ -15,4 +15,5 @@ model User {
   email              String    @unique
   subscriptionPaidTo DateTime? @default(now())
   brokerId           String?
+  hdImages           Boolean?  @default(false)
 }
